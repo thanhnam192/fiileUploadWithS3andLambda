@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: "The Best Form"
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: prod
+  StageName:
+    Type: String
+    Default: prod
+
+Conditions:
+    IsProd: !Equals [!Ref EnvironmentName,'prod']
+
+Globals:
+    Function:
+        Runtime: nodejs12.x
+        Timeout: 300
+        Handler: index.handler
+        Environment:
+            Variables:
+                ALLOW_ORIGIN: !If [IsProd, "*", "*"]
+                ENV_NAME: !Ref EnvironmentName
+                FILE_BUCKET: "xxxx"
+
+Resources:
+    FileUploadService:
+        Type: AWS::Serverless::Function
+        Properties:
+            CodeUri: ./dist/upload/upload.zip
+            Policies:
+                - S3CrudPolicy:
+                    BucketName: "ctump.form.file"
+            Events:
+                uploadFile:
+                    Type: Api
+                    Properties:
+                        RestApiId: !Ref CtumpApiGateWay
+                        Path: /api/file/upload-url
+                        Method: get
+    CtumpApiGateWay:
+        Type: AWS::Serverless::Api
+        Properties:
+            Name: "ctump-api"
+            StageName: !Ref StageName

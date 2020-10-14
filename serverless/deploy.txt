@@ -1,0 +1,4 @@
+sam package --s3-bucket xxxxxxxx --output-template-file prod-template.yaml --region ap-southeast-1 --profile duyaws
+
+
+sam deploy --template-file D:\git\ctump\serverless\prod-template.yaml --stack-name ctumpdeploy --capabilities CAPABILITY_IAM  --region ap-southeast-1 --profile duyaws

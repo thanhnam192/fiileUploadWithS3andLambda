@@ -1,0 +1,186 @@
+<html>
+	<header>
+		<title>CTUMP</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	</header>
+	<body>
+		<div class="container-sm container-md container-lg container-xl">
+			<div class="row">
+				<div class="col-sm">
+					<img src="./images/banner.jpg" class="img-fluid "  alt="Responsive image">
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8 ">
+					<form id="theForm" method="POST" enctype="multipart/form-data" >
+						<div class="form-group ">
+							<label for="theGd">Giảng đường</label>
+							<div class="col-sm-4" style="padding-left: 0px;">
+
+							
+								<select class="form-control" id="theGd" >
+									<option value="01.KY" selected >01.KY</option>
+									<option value="02.KY">02.KY</option>
+									<option value="03.KY">03.KY</option>
+									<option value="04.KY">04.KY</option>
+									<option value="05.KY">05.KY</option>
+									<option value="06.KY">06.KY</option>
+									<option value="07.KY">07.KY</option>
+									<option value="08.KY">08.KY</option>
+									<option value="09.KY">09.KY</option>
+									<option value="10.KY">10.KY</option>
+									<option value="11.KY">11.KY</option>
+									<option value="12.KY">12.KY</option>
+
+									<option value="01.RD">01.RD</option>
+									<option value="02.RD">02.RD</option>
+									<option value="03.RD">03.RD</option>
+									<option value="04.RD">04.RD</option>
+									<option value="05.RD">05.RD</option>
+									<option value="06.RD">06.RD</option>
+									<option value="07.RD">07.RD</option>
+									<option value="08.RD">08.RD</option>
+									<option value="09.RD">09.RD</option>
+									<option value="10.RD">10.RD</option>
+									<option value="11.RD">11.RD</option>
+									<option value="12.RD">12.RD</option>
+
+
+									<option value="01.YT">01.YT</option>
+									<option value="02.YT">02.YT</option>
+									<option value="03.YT">03.YT</option>
+									<option value="04.YT">04.YT</option>
+									<option value="05.YT">05.YT</option>
+
+									<option value="01.KT">01.KT</option>
+									<option value="02.KT">02.KT</option>
+									<option value="03.KT">03.KT</option>
+									<option value="04.KT">04.KT</option>
+									<option value="05.KT">05.KT</option>
+									<option value="06.KT">06.KT</option>
+									<option value="07.KT">07.KT</option>
+									<option value="08.KT">08.KT</option>
+									<option value="09.KT">09.KT</option>
+									<option value="10.KT">10.KT</option>
+
+									<option value="HT.DD">HT.DD</option>
+									<option value="HT.YT">HT.YT</option>
+									<option value="HT.KD">HT.KD</option>
+					
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group ">
+							<label for="theFile">Upload your file</label>
+							<input type="file" class="form-control-file" id="theFile">
+							<br/>
+							<div class="alert alert-success clearfix" role="alert" id="alertUploadSuccess" style="display: none;">
+								Upload file Success!
+							</div>
+							<div class="alert alert-warning clearfix" role="alert" id="alertError" style="display: none;">
+								Vui lòng chọn file để upload!
+							</div>
+						</div>
+			
+						<button id="theButton" type="submit" class="btn btn-primary mb-2">Submit</button>
+					</form>
+				</div>
+				
+			</div>
+			
+		</div>
+
+		
+	
+		<script>
+			const apiUrl = "https://lan0mvcmbk.execute-api.ap-southeast-1.amazonaws.com/prod/api/file/upload-url";
+			$( document ).ready(function() {
+			
+				$('#theForm').on('submit', sendFile);
+				$('#theFile').on('change',fileChange);
+				$('#theGd').on('change',dgChange);
+			});
+
+			function fileChange(){
+				$( "#theButton" ).attr( "disabled", false );
+				$('#alertError').css("display", "none");
+				$('#alertUploadSuccess').css("display", "none");
+			}
+
+			function dgChange(){
+				$( "#theButton" ).attr( "disabled", false );
+				$('#alertError').css("display", "none");
+				$('#alertUploadSuccess').css("display", "none");
+			}
+
+		function sendFile(e) {
+			$( "#theButton" ).attr('disabled', true);
+			e.preventDefault();
+
+			// get the reference to the actual file in the input
+			var theFormFile = $('#theFile').get()[0].files[0];
+				console.log(theFormFile);
+			
+			if( !theFormFile ) {
+				$('#alertError').css("display", "block");
+				return;
+			} 
+
+
+			var fileSize = theFormFile.size / 1024 / 1024; // in MB
+			if( fileSize > 50 ) {
+				alert('Can not upload file greater than 50MB');
+
+			}
+
+			
+			const gd = $('#theGd').val();
+			const urlForPreSigned = `${apiUrl}?file-name=${theFormFile.name}&gd=${gd}`;
+
+			$.ajax({
+				type: 'GET',
+				url: urlForPreSigned,
+				success : function(respone) {
+					console.log(respone);
+					uploadBySignedUrl(respone.url, theFormFile);
+				},
+				error: function() {
+					alert('File NOT uploaded');
+					console.log( arguments);
+					$( "#theButton" ).attr( "disabled", false );
+				}
+			});
+
+			
+		}
+
+		function uploadBySignedUrl(signedUrl, theFormFile){
+			$.ajax({
+				type: 'PUT',
+				url: signedUrl,
+				timeout: 0,
+				processData: false,
+				contentType: 'binary/octet-stream',
+				// the actual file is sent raw
+				data: theFormFile,
+				success : function() {
+					$('#alertUploadSuccess').css("display", "block");
+			
+				},
+				error: function() {
+					alert('File NOT uploaded');
+					console.log( arguments);
+					$( "#theButton" ).attr( "disabled", false );
+				}
+			});
+		}
+
+		</script>
+	</body>
+</html>
