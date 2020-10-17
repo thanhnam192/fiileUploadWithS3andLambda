@@ -13,71 +13,22 @@
   box-sizing: border-box;
 }
 
-input[type=text], select, textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-}
-
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-}
-
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
   padding: 20px;
 }
 
-.col-25 {
-  float: left;
-  width: 25%;
-  margin-top: 6px;
+.row {
+	margin: 5px;
 }
 
-.col-75 {
-  float: left;
-  width: 75%;
-  margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-
   label { font-size: 20px; }
 }
 
 @media (max-width: 767) {
-    /* your custom css class on a parent will increase specificity */
-    /* so this rule will override Bootstrap's font size setting */
     label { font-size: 14px; }
 }
 
@@ -97,97 +48,98 @@ input[type=submit]:hover {
 <body>
 	</header>
 	<body>
-		<div class="container">
+		<div class="container bg-light">
 			<div class="row justify-content-md-center">
-				
-					<img src="./images/banner.jpg" class="img-fluid "  alt="Responsive image" >
-				
+				<img src="./images/banner.jpg" class="img-fluid"  alt="Responsive image" style="max-height: 350px; width: 100%;" >
 			</div>
-					<form id="theForm" method="POST" enctype="multipart/form-data" >
-						<div class="row">
-							<div class="col-25">
-							  <label for="fname">Giảng đường</label>
-							</div>
-							<div class="col-75">
-								<select class="form-control form-control-lg" id="theGd"  >
-									<option value="01.KY" selected >01.KY</option>
-									<option value="02.KY">02.KY</option>
-									<option value="03.KY">03.KY</option>
-									<option value="04.KY">04.KY</option>
-									<option value="05.KY">05.KY</option>
-									<option value="06.KY">06.KY</option>
-									<option value="07.KY">07.KY</option>
-									<option value="08.KY">08.KY</option>
-									<option value="09.KY">09.KY</option>
-									<option value="10.KY">10.KY</option>
-									<option value="11.KY">11.KY</option>
-									<option value="12.KY">12.KY</option>
 
-									<option value="01.RD">01.RD</option>
-									<option value="02.RD">02.RD</option>
-									<option value="03.RD">03.RD</option>
-									<option value="04.RD">04.RD</option>
-									<option value="05.RD">05.RD</option>
-									<option value="06.RD">06.RD</option>
-									<option value="07.RD">07.RD</option>
-									<option value="08.RD">08.RD</option>
-									<option value="09.RD">09.RD</option>
-									<option value="10.RD">10.RD</option>
-									<option value="11.RD">11.RD</option>
-									<option value="12.RD">12.RD</option>
+			<form id="theForm" method="POST" enctype="multipart/form-data" >
+				<div class="row">
+					<div class="col-sm-12 col-md-3">
+						<label for="fname" class="font-weight-bold">Giảng đường</label>
+					</div>
+					<div class="col-sm-12 col-md-6">
+						<select class="form-control form-control-lg" id="theGd"  >
+							<option value="01.KY" selected >01.KY</option>
+							<option value="02.KY">02.KY</option>
+							<option value="03.KY">03.KY</option>
+							<option value="04.KY">04.KY</option>
+							<option value="05.KY">05.KY</option>
+							<option value="06.KY">06.KY</option>
+							<option value="07.KY">07.KY</option>
+							<option value="08.KY">08.KY</option>
+							<option value="09.KY">09.KY</option>
+							<option value="10.KY">10.KY</option>
+							<option value="11.KY">11.KY</option>
+							<option value="12.KY">12.KY</option>
 
-
-									<option value="01.YT">01.YT</option>
-									<option value="02.YT">02.YT</option>
-									<option value="03.YT">03.YT</option>
-									<option value="04.YT">04.YT</option>
-									<option value="05.YT">05.YT</option>
-
-									<option value="01.KT">01.KT</option>
-									<option value="02.KT">02.KT</option>
-									<option value="03.KT">03.KT</option>
-									<option value="04.KT">04.KT</option>
-									<option value="05.KT">05.KT</option>
-									<option value="06.KT">06.KT</option>
-									<option value="07.KT">07.KT</option>
-									<option value="08.KT">08.KT</option>
-									<option value="09.KT">09.KT</option>
-									<option value="10.KT">10.KT</option>
-
-									<option value="HT.DD">HT.DD</option>
-									<option value="HT.YT">HT.YT</option>
-									<option value="HT.KD">HT.KD</option>
-					
-								</select>
-							</div>
-						  </div>
+							<option value="01.RD">01.RD</option>
+							<option value="02.RD">02.RD</option>
+							<option value="03.RD">03.RD</option>
+							<option value="04.RD">04.RD</option>
+							<option value="05.RD">05.RD</option>
+							<option value="06.RD">06.RD</option>
+							<option value="07.RD">07.RD</option>
+							<option value="08.RD">08.RD</option>
+							<option value="09.RD">09.RD</option>
+							<option value="10.RD">10.RD</option>
+							<option value="11.RD">11.RD</option>
+							<option value="12.RD">12.RD</option>
 
 
-						<div class="row">
-							<div class="col-25">
-							  <label for="fname">Chọn File</label>
-							</div>
-							<div class="col-75">
-								<input type="file" class="form-control-file form-control-lg" id="theFile" style="overflow: hidden;">
-							</div>
+							<option value="01.YT">01.YT</option>
+							<option value="02.YT">02.YT</option>
+							<option value="03.YT">03.YT</option>
+							<option value="04.YT">04.YT</option>
+							<option value="05.YT">05.YT</option>
 
-							<br/>
-						
-						</div>
+							<option value="01.KT">01.KT</option>
+							<option value="02.KT">02.KT</option>
+							<option value="03.KT">03.KT</option>
+							<option value="04.KT">04.KT</option>
+							<option value="05.KT">05.KT</option>
+							<option value="06.KT">06.KT</option>
+							<option value="07.KT">07.KT</option>
+							<option value="08.KT">08.KT</option>
+							<option value="09.KT">09.KT</option>
+							<option value="10.KT">10.KT</option>
 
-						<div class="row alert alert-success clearfix " role="alert" id="alertUploadSuccess" style="display: none;" >
-							Upload file Success!
-						</div>
-						<div class=" row alert alert-warning clearfix " role="alert" id="alertError" style="display: none;">
-							Vui lòng chọn file để upload!
-						</div>
-						</br>
-						<div class="row">
-							<input id="theButton" type="submit" class="btn btn-lg" value="Gửi File"></input>
-						  </div>
+							<option value="HT.DD">HT.DD</option>
+							<option value="HT.YT">HT.YT</option>
+							<option value="HT.KD">HT.KD</option>
 			
-						
-					</form>
+						</select>
+					</div>
+					</div>
+
+
+				<div class="row">
+					<div class="col-sm-12 col-md-3">
+						<label for="fname" class="font-weight-bold">Chọn File</label>
+					</div>
+					<div class="col-sm-12 col-md-6">
+						<input type="file" class="form-control-file form-control-lg" id="theFile" style="overflow: hidden;" >
+					</div>
+
+					<br/>
+				
+				</div>
+
+				<div class="row alert alert-success clearfix " role="alert" id="alertUploadSuccess" style="display: none;" >
+					Gửi file thành công!
+				</div>
+				<div class=" row alert alert-warning clearfix " role="alert" id="alertError" style="display: none;">
+					Vui lòng chọn file để gửi!
+				</div>
+				</br>
+				<div class="row">
+					<input id="theButton" type="submit" class="btn btn-lg btn-success col-sm-12 col-md-2" value="Gửi File"></input>
+				</div>
+	
+				
+			</form>
+
+			
 		
 			
 		</div>
